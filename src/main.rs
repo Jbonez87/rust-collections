@@ -1,16 +1,19 @@
-use std::io;
+use std::{io, collections::HashMap};
 
 mod hashmap_practice;
 mod mean_median_mode;
 mod string_practice;
 mod vec_practice;
 mod piglatin;
+mod employees;
 
 use hashmap_practice::hashmap_examples;
 use mean_median_mode::{better_mode, mean, median, mode};
 use string_practice::string_examples;
 use vec_practice::vector_practice;
 use piglatin::pig_latin;
+use employees::{exec_add, exec_get};
+
 
 fn main() {
     vector_practice();
@@ -32,5 +35,29 @@ fn main() {
         .expect("Failed to read line");
     
     println!("{}", pig_latin(&input));
-    // println!("{}", better_pig_latin(&input));
+
+    let mut dict = HashMap::new();
+    let mut command = String::new();
+
+    loop {
+        print!("Enter command: ");
+        io::stdin()
+          .read_line(&mut command)
+          .expect("Failed to read from stdin");
+        let tokens = command
+          .split_whitespace()
+          .collect::<Vec<_>>();
+        if let Some(&action) = tokens.first() {
+          if let Err(msg) = match action {
+            "ADD" => exec_add(&tokens, &mut dict),
+            "GET" => exec_get(&tokens, &dict),
+            "EXIT" => break,
+            _ => Err("Invalid Command.")
+          } {
+            println!("Error: {}", msg);
+          }
+        };
+        command.clear();
+    }
+    println!("Bye.")
 }

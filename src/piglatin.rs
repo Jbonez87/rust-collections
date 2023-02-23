@@ -7,7 +7,7 @@ pub fn pig_latin(s: &str) -> String {
   };
 
   let len = answer.len();
-  let first_letter = first_char(&s);
+  let first_letter = first_char(s);
   let char_consonant = is_char_consonant(first_letter);
 
   if char_consonant {
@@ -17,7 +17,7 @@ pub fn pig_latin(s: &str) -> String {
   } else {
       answer.push_str("-hay");
   }
-  return format!("{}", answer);
+  answer.to_string()
 }
 
 fn first_char(s: &str) -> char {
@@ -35,5 +35,5 @@ fn is_char_consonant(c: char) -> bool {
       return false;
     }
   }
-  return true;
+  true
 }
