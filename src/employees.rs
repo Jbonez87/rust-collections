@@ -40,23 +40,3 @@ pub fn exec_add(cmd_tokens: &[&str], dict: &mut HashMap<String, Vec<String>>) ->
     Err("Invalid Command.")
   }
 }
-// pub fn add_employees(employees: &mut HashMap<&str, &str>) {
-//     println!("Enter the employees name");
-//     let mut name: String = String::new();
-//     stdin()
-//         .read_line(&mut name)
-//         .expect("Failed to read line");
-
-//     println!("name is {name}");
-    
-//     println!("Enter the employees department");
-//     let mut department: String = String::new();
-//     stdin()
-//         .read_line(&mut department)
-//         .expect("Failed to read line");
-    
-
-//     // employees.insert(&name, &department);
-
-//     println!("Add {name} to {department}");
-// }
