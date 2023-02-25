@@ -1,4 +1,5 @@
 use std::{io, collections::HashMap};
+use colored::*;
 
 mod hashmap_practice;
 mod mean_median_mode;
@@ -34,7 +35,7 @@ fn main() {
         .read_line(&mut input)
         .expect("Failed to read line");
     
-    println!("{}", pig_latin(&input));
+    println!("{}", pig_latin(&input).cyan());
 
     let mut dict = HashMap::new();
     let mut command = String::new();
@@ -54,7 +55,7 @@ fn main() {
             "EXIT" => break,
             _ => Err("Invalid Command.")
           } {
-            println!("Error: {}", msg);
+            println!("Error: {}", msg.red());
           }
         };
         command.clear();
