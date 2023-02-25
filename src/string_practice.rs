@@ -1,8 +1,8 @@
-pub struct Locolib {
+pub struct Template {
     pub text: String,
 }
 
-impl Locolib {
+impl Template {
     pub fn get_text(&self) {
         println!("Locolib text is: {}", &self.text);
     }
@@ -56,15 +56,15 @@ pub fn string_examples() {
     let s1: String = String::from("tic");
     let s2: String = String::from("tac");
     let s3: String = String::from("toe");
-    let locolib = Locolib {
+    let template = Template {
         text: String::from("!"),
     };
 
-    let s: String = format!("{}-{}-{}{}", s1, s2, s3, locolib.text);
+    let s: String = format!("{}-{}-{}{}", s1, s2, s3, template.text);
 
     println!("s is now formatted as: {s}");
 
-    locolib.get_text();
+    template.get_text();
 
     let hello = "Здравствуйте";
 
