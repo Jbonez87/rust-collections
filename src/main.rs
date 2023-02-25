@@ -1,6 +1,10 @@
 use std::{io, collections::HashMap};
 use colored::*;
 
+/*
+  These are all of the internal modules to print out the collection
+  types. 
+ */
 mod hashmap_practice;
 mod mean_median_mode;
 mod string_practice;
@@ -8,6 +12,9 @@ mod vec_practice;
 mod piglatin;
 mod employees;
 
+/*
+  These are all the functions used from the modules.
+ */
 use hashmap_practice::hashmap_examples;
 use mean_median_mode::{better_mode, mean, median, mode};
 use string_practice::string_examples;
