@@ -6,7 +6,12 @@ Install `rust` on your local machine if it isn't installed already. You can foll
 
 ## Running this project
 
-Once `rust` is installed, run the following command in your terminal: `cargo run` and then follow the prompts. This will enable you to test the outputs of the project.
+Once `rust` is installed, run the following commands in your terminal:
+
+1. `cargo build`
+2. `cargo run` and then follow the prompts.
+
+This will enable you to test the outputs of the project.
 
 ## Editing the Collections
 
