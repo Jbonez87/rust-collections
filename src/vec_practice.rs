@@ -67,6 +67,10 @@ pub fn vector_practice() {
         _ => println!("Not an integer")
     }
 
+    // Creating a Vec from a tuple
+    let vt: Vec<i64> = (0..10).collect();
+    println!("vt is: {:?}", vt);
+
     // map example
     // v.iter().map(|&x| {
     //   let new = &x - 5;
