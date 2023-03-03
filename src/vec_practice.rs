@@ -62,6 +62,11 @@ pub fn vector_practice() {
         println!("Val is: {:?}", val);
     }
 
+    match &row[1] {
+        SpreadsheetCell::Int(i) => println!("i is {}", i),
+        _ => println!("Not an integer")
+    }
+
     // map example
     // v.iter().map(|&x| {
     //   let new = x - 5;
