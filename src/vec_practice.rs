@@ -69,7 +69,7 @@ pub fn vector_practice() {
 
     // map example
     // v.iter().map(|&x| {
-    //   let new = x - 5;
+    //   let new = &x - 5;
     //   println!("x is now: {}", new);
     //   return new;
     // }).collect::<Vec<i64>>();
