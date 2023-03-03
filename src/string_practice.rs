@@ -73,6 +73,12 @@ pub fn string_examples() {
     println!("s is now a substring: {}", s);
     println!("Curly braces must be escaped in Rust: {{}}");
     string_iteration_example();
+
+    let mut s = String::from("Hello");
+    s.push_str(", John");
+    s.push('!');
+
+    println!("{s}");
 }
 
 fn string_iteration_example() {
