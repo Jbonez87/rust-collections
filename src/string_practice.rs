@@ -79,6 +79,8 @@ pub fn string_examples() {
     s.push('!');
 
     println!("{s}");
+
+    string_value_types();
 }
 
 fn string_iteration_example() {
@@ -89,4 +91,19 @@ fn string_iteration_example() {
     for b in "Зд".bytes() {
         println!("{}", b);
     }
+}
+
+fn string_value_types() {
+    let s = String::from("नमस्ते");
+
+    // Bytes
+    // [224, 164, 168, 224, 164, 174, 224, 164, 184, 224, 165, 141, 224, 164, 164, 224, 165, 135]
+
+    // Scalar values
+    // ['न', 'म', 'स', '्', 'त', 'े']
+
+    // Graphene Clusters
+    // ["न", "म", "स्", "ते"]
+
+    println!("{s}");
 }
