@@ -10,7 +10,6 @@ mod mean_median_mode;
 mod string_practice;
 mod vec_practice;
 mod piglatin;
-mod employees;
 
 /*
   These are all the functions used from the modules.
