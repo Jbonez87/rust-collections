@@ -20,7 +20,6 @@ use mean_median_mode::{better_mode, mean, median, mode};
 use string_practice::string_examples;
 use vec_practice::vector_practice;
 use piglatin::pig_latin;
-use employees::{exec_add, exec_get};
 
 
 fn main() {
@@ -44,28 +43,59 @@ fn main() {
     
     println!("{}", pig_latin(&input).cyan());
 
-    let mut dict = HashMap::new();
-    let mut command = String::new();
-
+    let mut map = HashMap::<String, Vec<String>>::new();
     loop {
-        print!("Enter command: ");
-        io::stdin()
-          .read_line(&mut command)
-          .expect("Failed to read from stdin");
-        let tokens = command
-          .split_whitespace()
-          .collect::<Vec<_>>();
-        if let Some(&action) = tokens.first() {
-          if let Err(msg) = match action {
-            "ADD" => exec_add(&tokens, &mut dict),
-            "GET" => exec_get(&tokens, &dict),
-            "EXIT" => break,
-            _ => Err("Invalid Command.")
-          } {
-            println!("Error: {}", msg.red());
-          }
-        };
-        command.clear();
+        let action = next_action();
+        match action {
+            Action::Add(employee, department) => {
+                let employees = map.entry(department).or_insert(Vec::new());
+                employees.push(employee);
+            },
+            Action::List(department) => {
+                let employees = map.get_mut(&department);
+                if let Some(employees) = employees  {
+                    employees.sort_unstable();
+                    println!("Department '{}' has employees {:?}", department, employees);
+                } else {
+                    println!("Department '{}' has has no employees yet", department);
+                }
+            },
+            Action::Quit => {
+                break;
+            },
+            Action::Unknown => {}
+        }
     }
-    println!("Bye.")
+    println!("map: {:?}", map);
+}
+
+enum Action {
+    Add(String, String),
+    List(String),
+    Quit,
+    Unknown
+}
+
+fn next_action() -> Action {
+    let mut input = String::new();
+    println!("What do you want to do?\n\
+    a $PERSON $DEPARTMENT => adds $PERSON to $DEPARTMENT\n\
+    l $DEPARTMENT         => lists all members of $DEPARTMENT in alphabetic order\n\
+    q                     => quits the app ");
+
+    io::stdin()
+          .read_line(&mut input)
+          .expect("Failed to read line!");
+    input_to_action(input)
+}
+
+fn input_to_action(s: String) -> Action {
+    println!("{s}");
+    let words: Vec<&str> = s.split_whitespace().collect();
+    match words.as_slice() {
+        [ "a", name, department ] =>  Action::Add(name.to_string(), department.to_string()),
+        [ "l", department ] => Action::List(department.to_string()),
+        [ "q" ] => Action::Quit,
+        _ => Action::Unknown
+    }
 }
